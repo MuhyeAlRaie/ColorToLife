@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="ColorToLife - Color on paper, then bring your creation to life!">
+  <meta name="theme-color" content="#EAF7FF">
+  <title>ColorToLife - Your Coloring. Your Colors. Your World.</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ======= top bar ======= -->
+    <header class="topbar">
+      <a class="brand" href="#" id="brand-home" aria-label="ColorToLife home">
+        <svg class="brand-logo" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="19" fill="#FFE066"/>
+          <circle cx="14" cy="17" r="3.4" fill="#3A3357"/>
+          <circle cx="26" cy="17" r="3.4" fill="#3A3357"/>
+          <circle cx="12.8" cy="15.8" r="1.1" fill="#FFFFFF"/>
+          <circle cx="24.8" cy="15.8" r="1.1" fill="#FFFFFF"/>
+          <path d="M14 25 Q20 31 26 25" fill="none" stroke="#3A3357" stroke-width="2.6" stroke-linecap="round"/>
+          <path d="M20 4 L23 9 L17 9 Z" fill="#FF8B7E"/>
+        </svg>
+        <span class="brand-name">ColorToLife</span>
+      </a>
+
+      <div class="step-indicator" id="step-indicator" aria-label="Progress">
+        <span class="step-chip" data-step="0">
+          <svg viewBox="0 0 24 24" class="step-ico" aria-hidden="true"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 12h6M9 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Color
+        </span>
+        <span class="step-chip" data-step="1">
+          <svg viewBox="0 0 24 24" class="step-ico" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 6l1.5-2.5h5L16 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          Scan
+        </span>
+        <span class="step-chip" data-step="2">
+          <svg viewBox="0 0 24 24" class="step-ico" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          Play
+        </span>
+      </div>
+
+      <button class="icon-btn" id="btn-sound" type="button" aria-label="Turn sound on" aria-pressed="false">
+        <svg id="sound-icon-on" viewBox="0 0 24 24" class="hidden" aria-hidden="true">
+          <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/>
+          <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg id="sound-icon-off" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor"/>
+          <path d="M17 9l5 6M22 9l-5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <main id="screens">
+
+      <!-- ======= Screen A - Landing ======= -->
+      <section class="screen active" id="screen-landing">
+        <div class="screen-scroll">
+          <div class="landing-hero">
+            <div class="landing-copy">
+              <h1 class="hero-title">Your Coloring.<br><em>Your Colors.</em><br>Your World.</h1>
+              <p class="hero-sub">Color on paper, then bring your creation to life!</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-xl" id="btn-start-adventure" data-nav="characters" type="button">
+                  <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg>
+                  Start Adventure
+                </button>
+              </div>
+              <p class="hero-privacy">
+                <svg viewBox="0 0 24 24" class="mini-ico" aria-hidden="true"><path d="M12 3 5 6v5c0 5 3 8.4 7 10 4-1.6 7-5 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Works right in your browser - photos never leave your device.
+              </p>
+            </div>
+            <div class="landing-visual">
+              <div class="visual-card" id="landing-3d" aria-label="3D dinosaur preview"></div>
+              <div class="visual-badge">
+                <svg viewBox="0 0 24 24" class="mini-ico" aria-hidden="true"><path d="M12 2l1.9 4.6L18 4.8l-.9 4.9L22 12l-4.9 2.3.9 4.9-4.1-1.8L12 22l-1.9-4.6-4.1 1.8.9-4.9L2 12l4.9-2.3L6 4.8l4.1 1.8L12 2Z" fill="currentColor"/></svg>
+                Real 3D, made from your colors
+              </div>
+            </div>
+          </div>
+
+          <div class="steps-row">
+            <article class="step-card">
+              <div class="step-art step-art-1">
+                <svg viewBox="0 0 96 72" aria-hidden="true">
+                  <rect x="14" y="10" width="52" height="66" rx="6" fill="#FFFFFF" stroke="#3A3357" stroke-width="3"/>
+                  <ellipse cx="40" cy="42" rx="16" ry="13" fill="#FFF" stroke="#3A3357" stroke-width="3"/>
+                  <circle cx="34" cy="39" r="2.6" fill="#3A3357"/>
+                  <circle cx="46" cy="39" r="2.6" fill="#3A3357"/>
+                  <path d="M40 28 L46 18 L52 28" fill="#FFD93D" stroke="#3A3357" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M62 34 L82 12" stroke="#FF8B7E" stroke-width="7" stroke-linecap="round"/>
+                  <path d="M62 34 L82 12" stroke="#3A3357" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 9"/>
+                  <path d="M58 30 l6 -8" stroke="#FF8B7E" stroke-width="5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3>1. Print &amp; Color</h3>
+              <p>Print the Dino sheet and color every zone with your crayons.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-art step-art-2">
+                <svg viewBox="0 0 96 72" aria-hidden="true">
+                  <rect x="16" y="14" width="64" height="46" rx="8" fill="#9AC8FF" stroke="#3A3357" stroke-width="3"/>
+                  <rect x="26" y="22" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#3A3357" stroke-width="3"/>
+                  <ellipse cx="48" cy="37" rx="11" ry="9" fill="#FFF" stroke="#3A3357" stroke-width="3"/>
+                  <path d="M48 29 L53 21 L58 29" fill="#FF8B7E" stroke="#3A3357" stroke-width="3" stroke-linejoin="round"/>
+                  <circle cx="62" cy="27" r="3.4" fill="#FFD93D" stroke="#3A3357" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3>2. Scan Your Drawing</h3>
+              <p>Point the camera at your page - we find your exact colors.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-art step-art-3">
+                <svg viewBox="0 0 96 72" aria-hidden="true">
+                  <ellipse cx="48" cy="44" rx="18" ry="15" fill="#9BE0A6" stroke="#3A3357" stroke-width="3"/>
+                  <ellipse cx="48" cy="49" rx="9" ry="7" fill="#FFF3B0" stroke="#3A3357" stroke-width="2.6"/>
+                  <path d="M48 30 L53 20 L58 30" fill="#FFA69E" stroke="#3A3357" stroke-width="3" stroke-linejoin="round"/>
+                  <circle cx="41" cy="40" r="2.8" fill="#3A3357"/>
+                  <circle cx="55" cy="40" r="2.8" fill="#3A3357"/>
+                  <path d="M42 46 Q48 51 54 46" fill="none" stroke="#3A3357" stroke-width="2.6" stroke-linecap="round"/>
+                  <path d="M24 16 l3 6 -6 0 Z" fill="#FFD93D"/>
+                  <path d="M72 14 l3 6 -6 0 Z" fill="#9AC8FF"/>
+                  <path d="M68 58 l3 6 -6 0 Z" fill="#C9B6F2"/>
+                </svg>
+              </div>
+              <h3>3. Watch It Come Alive!</h3>
+              <p>Your 3D Dino wears the same colors you drew - play together!</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= Screen B - Character selection ======= -->
+      <section class="screen" id="screen-characters">
+        <div class="screen-scroll">
+          <div class="section-head">
+            <button class="icon-btn ghost" data-nav="landing" type="button" aria-label="Back to home">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div>
+              <h1>Pick your friend</h1>
+              <p>Choose the character you want to color and bring to life.</p>
+            </div>
+          </div>
+
+          <div class="gallery">
+            <article class="char-card">
+              <div class="char-art"><img src="assets/characters/dino.svg" alt="Dino the dinosaur - digital preview" draggable="false"></div>
+              <div class="char-body">
+                <h2>Dino</h2>
+                <p>A friendly little dinosaur with a big head, happy tail and five color spots to paint.</p>
+                <button class="btn btn-primary" data-choose="dino" type="button">
+                  Choose Character
+                  <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </article>
+
+            <article class="char-card locked">
+              <div class="char-art"><img src="assets/characters/robo.svg" alt="Robo the friendly robot - coming soon" draggable="false"></div>
+              <div class="ribbon">Coming Soon</div>
+              <div class="char-body">
+                <h2>Robo</h2>
+                <p>A cheerful robot who loves to dance. Still charging up!</p>
+                <button class="btn btn-soft" disabled type="button">Coming Soon</button>
+              </div>
+            </article>
+
+            <article class="char-card locked">
+              <div class="char-art"><img src="assets/characters/bunny.svg" alt="Bunny the rabbit - coming soon" draggable="false"></div>
+              <div class="ribbon">Coming Soon</div>
+              <div class="char-body">
+                <h2>Bunny</h2>
+                <p>A soft bunny with long ears and a fluffy tail. Growing soon!</p>
+                <button class="btn btn-soft" disabled type="button">Coming Soon</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= Screen C - Coloring instructions ======= -->
+      <section class="screen" id="screen-instructions">
+        <div class="screen-scroll">
+          <div class="section-head">
+            <button class="icon-btn ghost" id="btn-instructions-back" type="button" aria-label="Back to characters">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div>
+              <h1>Color Dino on paper</h1>
+              <p>Print the sheet, color the five zones, then come back and scan it.</p>
+            </div>
+          </div>
+
+          <div class="instructions-grid">
+            <div class="card sheet-card">
+              <div class="sheet-preview" id="sheet-preview" aria-label="Preview of the printable Dino coloring sheet"></div>
+              <div class="sheet-actions">
+                <button class="btn btn-primary" id="btn-download-sheet" type="button">
+                  <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M12 4v10m0 0 4-4m-4 4-4-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                  Download Coloring Sheet
+                </button>
+                <button class="btn btn-secondary" id="btn-print-sheet" type="button">
+                  <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M7 8V4h10v4" fill="none" stroke="currentColor" stroke-width="2"/><rect x="4" y="8" width="16" height="8" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 13h10v7H7z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                  Print
+                </button>
+              </div>
+            </div>
+
+            <div class="instructions-side">
+              <div class="card zone-card">
+                <h2>Color the five zones</h2>
+                <ul class="zone-list">
+                  <li><span class="zone-num">1</span><strong>Body</strong> - the big head and round tummy area</li>
+                  <li><span class="zone-num">2</span><strong>Belly</strong> - the oval tummy patch</li>
+                  <li><span class="zone-num">3</span><strong>Spikes</strong> - the five back plates</li>
+                  <li><span class="zone-num">4</span><strong>Feet</strong> - both little feet</li>
+                  <li><span class="zone-num">5</span><strong>Arms</strong> - both small arms</li>
+                </ul>
+              </div>
+
+              <div class="card tips-card">
+                <h2>Coloring tips</h2>
+                <ul class="tips-list">
+                  <li>Press a little harder so colors are bright and bold.</li>
+                  <li>Stay inside the thick black lines.</li>
+                  <li>Leave the eyes and mouth black and white.</li>
+                  <li>Each zone can have a different color - be creative!</li>
+                </ul>
+              </div>
+
+              <div class="card note-card">
+                <p><strong>For grown-ups:</strong> print at 100% scale on plain white A4 paper.
+                  When scanning, good light and a flat page give the best color match.</p>
+              </div>
+
+              <button class="btn btn-primary btn-xl btn-block" id="btn-done-coloring" type="button">
+                <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                I'm Done Coloring
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= Scanner screen ======= -->
+      <section class="screen" id="screen-scanner">
+        <div class="screen-scroll">
+          <div class="section-head">
+            <button class="icon-btn ghost" id="btn-scanner-back" type="button" aria-label="Back">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div>
+              <h1>Scan your drawing</h1>
+              <p>Place your coloring page inside the frame.</p>
+            </div>
+          </div>
+
+          <div class="camera-shell">
+            <div class="camera-wrap" id="camera-wrap">
+              <video id="camera-video" playsinline autoplay muted></video>
+
+              <div class="scan-guide" id="scan-guide" aria-hidden="true">
+                <span class="guide-corner tl"></span>
+                <span class="guide-corner tr"></span>
+                <span class="guide-corner bl"></span>
+                <span class="guide-corner br"></span>
+              </div>
+
+              <p class="scan-hint hidden" id="scan-hint">
+                <svg viewBox="0 0 24 24" class="mini-ico" aria-hidden="true"><path d="M12 3 5 6v5c0 5 3 8.4 7 10 4-1.6 7-5 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                Keep the page flat, fill the frame, and use good light.
+              </p>
+
+              <!-- frozen frame after capture -->
+              <div class="frozen-layer hidden" id="frozen-layer">
+                <canvas id="frozen-canvas" width="720" height="1018"></canvas>
+              </div>
+
+              <!-- processing overlay -->
+              <div class="processing-layer hidden" id="processing-layer">
+                <div class="scanline"></div>
+                <div class="processing-bubble">
+                  <div class="spinner" aria-hidden="true"></div>
+                  <p id="processing-text">Finding your colors...</p>
+                </div>
+              </div>
+
+              <!-- camera error panel -->
+              <div class="camera-error hidden" id="camera-error">
+                <svg viewBox="0 0 24 24" class="error-ico" aria-hidden="true"><path d="M12 4 2.5 20h19L12 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="17.2" r="1.3" fill="currentColor"/></svg>
+                <p id="camera-error-text"></p>
+                <div class="error-actions">
+                  <button class="btn btn-secondary" id="btn-error-retry" type="button">Try Again</button>
+                  <button class="btn btn-primary" id="btn-error-upload" type="button">Use a Photo Instead</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="scanner-controls">
+              <button class="btn btn-secondary btn-round" id="btn-switch" type="button" aria-label="Switch camera">
+                <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M4 9a8 8 0 0 1 14-2.5M20 15a8 8 0 0 1-14 2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Switch
+              </button>
+
+              <button class="btn-shutter" id="btn-capture" type="button" aria-label="Take photo">
+                <span class="shutter-ring"></span>
+                <span class="shutter-core"></span>
+              </button>
+
+              <button class="btn btn-secondary btn-round" id="btn-upload" type="button">
+                <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M12 15V5m0 0 4 4m-4-4-4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+                Upload
+              </button>
+            </div>
+
+            <!-- confirm / retake after capture -->
+            <div class="confirm-controls hidden" id="confirm-controls">
+              <button class="btn btn-soft" id="btn-retake" type="button">
+                <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M4 9a8 8 0 0 1 14-2.5M20 15a8 8 0 0 1-14 2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Retake
+              </button>
+              <button class="btn btn-primary" id="btn-confirm" type="button">
+                <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Looks Good
+              </button>
+            </div>
+
+            <p class="privacy-note">
+              <svg viewBox="0 0 24 24" class="mini-ico" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V8a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              Your photo never leaves your device - everything runs in your browser.
+            </p>
+
+            <input type="file" id="upload-input" accept="image/*" class="hidden" aria-label="Upload a photo of your coloring page">
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= Review screen ======= -->
+      <section class="screen" id="screen-review">
+        <div class="screen-scroll">
+          <div class="section-head">
+            <button class="icon-btn ghost" id="btn-review-back" type="button" aria-label="Back to scanner">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div>
+              <h1>We found your colors!</h1>
+              <p>Tap any color circle to change it if we guessed wrong.</p>
+            </div>
+          </div>
+
+          <div class="review-grid">
+            <div class="card scan-card">
+              <h2>Your scanned page</h2>
+              <div id="aligned-preview" class="aligned-preview" aria-label="Aligned scan of your coloring page"></div>
+            </div>
+
+            <div class="review-side">
+              <div class="card swatch-card">
+                <h2>Detected colors</h2>
+                <div class="swatch-grid">
+                  <div class="swatch-item">
+                    <button class="swatch" id="swatch-body" type="button" aria-label="Change body color"></button>
+                    <span class="swatch-name">Body</span>
+                    <span class="swatch-hex" id="swatch-label-body">#FFFFFF</span>
+                    <input type="color" class="hidden" id="picker-body">
+                  </div>
+                  <div class="swatch-item">
+                    <button class="swatch" id="swatch-belly" type="button" aria-label="Change belly color"></button>
+                    <span class="swatch-name">Belly</span>
+                    <span class="swatch-hex" id="swatch-label-belly">#FFFFFF</span>
+                    <input type="color" class="hidden" id="picker-belly">
+                  </div>
+                  <div class="swatch-item">
+                    <button class="swatch" id="swatch-spikes" type="button" aria-label="Change spikes color"></button>
+                    <span class="swatch-name">Spikes</span>
+                    <span class="swatch-hex" id="swatch-label-spikes">#FFFFFF</span>
+                    <input type="color" class="hidden" id="picker-spikes">
+                  </div>
+                  <div class="swatch-item">
+                    <button class="swatch" id="swatch-feet" type="button" aria-label="Change feet color"></button>
+                    <span class="swatch-name">Feet</span>
+                    <span class="swatch-hex" id="swatch-label-feet">#FFFFFF</span>
+                    <input type="color" class="hidden" id="picker-feet">
+                  </div>
+                  <div class="swatch-item">
+                    <button class="swatch" id="swatch-arms" type="button" aria-label="Change arms color"></button>
+                    <span class="swatch-name">Arms</span>
+                    <span class="swatch-hex" id="swatch-label-arms">#FFFFFF</span>
+                    <input type="color" class="hidden" id="picker-arms">
+                  </div>
+                </div>
+                <p class="review-warning hidden" id="review-warning"></p>
+              </div>
+
+              <div class="card preview-card">
+                <h2>Your Dino preview</h2>
+                <div class="dino-preview" id="review-dino-preview" aria-label="Digital Dino preview with your colors"></div>
+              </div>
+
+              <div class="review-actions">
+                <button class="btn btn-soft" id="btn-scan-again" type="button">
+                  <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M4 9a8 8 0 0 1 14-2.5M20 15a8 8 0 0 1-14 2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Scan Again
+                </button>
+                <button class="btn btn-primary btn-xl" id="btn-bring-to-life" type="button">
+                  <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                  Bring My Character to Life
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======= World screen ======= -->
+      <section class="screen" id="screen-world">
+        <div class="world-stage">
+          <div class="world-canvas" id="world-canvas" aria-label="3D world with your colored Dino"></div>
+
+          <div class="world-top">
+            <p class="world-colors-note" id="world-colors-note"></p>
+            <button class="btn btn-secondary btn-round" id="btn-world-finish" type="button">
+              <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Finish
+            </button>
+          </div>
+
+          <div class="world-controls">
+            <button class="btn btn-primary btn-pill" id="btn-move" type="button">
+              <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M5 12h14m0 0-4-4m4 4-4 4M19 12H5m0 0 4-4m-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Move
+            </button>
+            <button class="btn btn-primary btn-pill" id="btn-dance" type="button">
+              <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><circle cx="7" cy="20" r="2" fill="currentColor"/><circle cx="17" cy="20" r="2" fill="currentColor"/><path d="M7 18v-4a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M9 6c0-2 1.5-3 3-3s3 1 3 3-1.5 3-3 3-3 1-3 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              Dance
+            </button>
+            <button class="btn btn-primary btn-pill" id="btn-jump" type="button">
+              <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M12 20V7m0 0-4 4m4-4 4 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 20h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+              Jump
+            </button>
+            <button class="btn btn-soft btn-pill" id="btn-reset" type="button">
+              <svg viewBox="0 0 24 24" class="btn-ico" aria-hidden="true"><path d="M4 9a8 8 0 0 1 14-2.5M20 15a8 8 0 0 1-14 2.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Reset
+            </button>
+          </div>
+
+          <p class="world-hint">Drag to spin the world - tap Dino to say hi!</p>
+
+          <!-- celebration card (shown when the world opens) -->
+          <div class="celebration-card hidden" id="celebration-card" role="dialog" aria-label="You made Dino">
+            <div class="celebration-inner">
+              <h1>You made Dino!</h1>
+              <p>Your colors created this character!</p>
+              <button class="btn btn-primary btn-xl" id="btn-celebration-play" type="button">Let's Play!</button>
+            </div>
+          </div>
+
+          <!-- final overlay -->
+          <div class="final-overlay hidden" id="final-overlay" role="dialog" aria-label="You made Dino - the end screen">
+            <div class="final-card">
+              <h1>You made Dino!</h1>
+              <p>Your colors created this character!</p>
+              <div class="final-actions">
+                <button class="btn btn-primary" id="btn-play-again" type="button">Play Again</button>
+                <button class="btn btn-secondary" id="btn-scan-another" type="button">Scan Another Drawing</button>
+                <button class="btn btn-soft" id="btn-choose-character" type="button">Choose Character</button>
+              </div>
+              <button class="link-btn" id="btn-final-back" type="button">Back to the world</button>
+            </div>
+          </div>
+
+          <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- scripts (classic scripts, no build step needed) -->
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/sheet-data.js"></script>
+  <script src="js/sheet-templates.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/color-detection.js"></script>
+  <script src="js/sheet.js"></script>
+  <script src="js/scanner.js"></script>
+  <script src="js/character.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
